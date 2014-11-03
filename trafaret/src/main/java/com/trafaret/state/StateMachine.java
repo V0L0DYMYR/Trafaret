@@ -1,25 +1,29 @@
-package com.trafaret;
+package com.trafaret.state;
+
+import com.trafaret.utils.Pair;
+import com.trafaret.utils.Strings;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 
-public class StateKeeper {
+public class StateMachine {
     private State state;
     Set<State> starts = new HashSet<>();
     Map<State, State> endStartMap = new HashMap<>();
     Map<State, StringBuilder> openExpressions = new HashMap<>();
     Map<Pair<State, State>, String> lastExpressions = new HashMap<>();
 
-    private StateKeeper(State state) {
+    private StateMachine(State state) {
         this.state = state;
     }
-    public static StateKeeper init() {
-        return new StateKeeper(State.PLAIN_TEXT);
+    public static StateMachine init() {
+        return new StateMachine(State.PLAIN_TEXT);
     }
 
-    public StateKeeper track(State start, State end) {
+    public StateMachine track(State start, State end) {
         starts.add(start);
         endStartMap.put(end, start);
         return this;
@@ -52,6 +56,18 @@ public class StateKeeper {
 
     public String getExpression(Pair<State, State> pair) {
         return Strings.nullToEmpty(lastExpressions.get(pair));
+    }
+
+    public StateMachine define(String sign, char... chars) {
+        return this;
+    }
+
+    public StateMachine handle(String from, char c, String to, Function<String, String> handler) {
+        return this;
+    }
+
+    public StateMachine handle(String from, Set<Character> c, String to, Function<String, String> handler) {
+        return this;
     }
 
     public static enum State {

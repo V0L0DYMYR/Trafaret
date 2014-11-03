@@ -1,4 +1,4 @@
-package com.trafaret;
+package com.trafaret.utils;
 
 import java.util.Objects;
 

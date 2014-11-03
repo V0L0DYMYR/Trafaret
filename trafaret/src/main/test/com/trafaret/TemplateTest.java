@@ -1,5 +1,6 @@
 package com.trafaret;
 
+import com.trafaret.template.Trafaret;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
