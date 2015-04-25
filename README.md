@@ -1,2 +1,2 @@
-hi Natasha. Trafaret
+Trafaret
 ========
